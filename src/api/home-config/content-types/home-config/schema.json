@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_configs",
+  "info": {
+    "singularName": "home-config",
+    "pluralName": "home-configs",
+    "displayName": "HomeConfig"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true
+    },
+    "Imagen": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "Texto": {
+      "type": "text",
+      "required": true
+    },
+    "Redes": {
+      "type": "string",
+      "required": true
+    },
+    "Correo": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

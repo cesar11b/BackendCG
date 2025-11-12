@@ -430,6 +430,397 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiConversacionConversacion
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'conversacions';
+  info: {
+    displayName: 'Conversacion';
+    pluralName: 'conversacions';
+    singularName: 'conversacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Enumeration<['Activo', 'Inactivo']> &
+      Schema.Attribute.Required;
+    FechaCierre: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    FechaInicio: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::conversacion.conversacion'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Usuario: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiDescuentoDescuento extends Struct.CollectionTypeSchema {
+  collectionName: 'descuentos';
+  info: {
+    displayName: 'Descuento';
+    pluralName: 'descuentos';
+    singularName: 'descuento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
+    Estado: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    Imagen: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::descuento.descuento'
+    > &
+      Schema.Attribute.Private;
+    producto: Schema.Attribute.Relation<'oneToOne', 'api::producto.producto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Vigencia_Desde: Schema.Attribute.Date & Schema.Attribute.Required;
+    Vigencia_Hasta: Schema.Attribute.Date;
+  };
+}
+
+export interface ApiDetallePedidoDetallePedido
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'detalle_pedidos';
+  info: {
+    displayName: 'DetallePedido';
+    pluralName: 'detalle-pedidos';
+    singularName: 'detalle-pedido';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Cantidad: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::detalle-pedido.detalle-pedido'
+    > &
+      Schema.Attribute.Private;
+    Pedido: Schema.Attribute.Relation<'oneToOne', 'api::pedido.pedido'>;
+    PrecioUnitario: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    Producto: Schema.Attribute.Relation<'oneToOne', 'api::producto.producto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Subtotal: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHomeConfigHomeConfig extends Struct.SingleTypeSchema {
+  collectionName: 'home_configs';
+  info: {
+    displayName: 'HomeConfig';
+    pluralName: 'home-configs';
+    singularName: 'home-config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Correo: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Imagen: Schema.Attribute.Media<'images' | 'files' | 'videos', true> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::home-config.home-config'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Redes: Schema.Attribute.String & Schema.Attribute.Required;
+    Texto: Schema.Attribute.Text & Schema.Attribute.Required;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMensajeMensaje extends Struct.CollectionTypeSchema {
+  collectionName: 'mensajes';
+  info: {
+    displayName: 'Mensaje';
+    pluralName: 'mensajes';
+    singularName: 'mensaje';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Asunto: Schema.Attribute.String & Schema.Attribute.Required;
+    Conversacion: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::conversacion.conversacion'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    FechaEnvio: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::mensaje.mensaje'
+    > &
+      Schema.Attribute.Private;
+    Mensaje: Schema.Attribute.Text & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
+  collectionName: 'pedidos';
+  info: {
+    displayName: 'Pedido';
+    pluralName: 'pedidos';
+    singularName: 'pedido';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Enumeration<['Pendiente', 'Retirado con exito']> &
+      Schema.Attribute.Required;
+    FechaPedido: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pedido.pedido'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Total: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Usuario: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
+  collectionName: 'productos';
+  info: {
+    displayName: 'Producto';
+    pluralName: 'productos';
+    singularName: 'producto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoriarelation: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
+    descuento: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::descuento.descuento'
+    >;
+    Estado: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    Imagen: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::producto.producto'
+    > &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Stock: Schema.Attribute.Integer & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProgresoProgreso extends Struct.CollectionTypeSchema {
+  collectionName: 'progresos';
+  info: {
+    displayName: 'Progreso';
+    pluralName: 'progresos';
+    singularName: 'progreso';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Fecha_Registro: Schema.Attribute.Date & Schema.Attribute.Required;
+    IMC: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::progreso.progreso'
+    > &
+      Schema.Attribute.Private;
+    Observaciones: Schema.Attribute.Text & Schema.Attribute.Required;
+    Peso: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Usuario: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
+  collectionName: 'reservas';
+  info: {
+    displayName: 'Reserva';
+    pluralName: 'reservas';
+    singularName: 'reserva';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Asistencia: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Enumeration<['Activo', 'Inactivo']> &
+      Schema.Attribute.Required;
+    Fecha: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reserva.reserva'
+    > &
+      Schema.Attribute.Private;
+    Observaciones: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Usuario: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiServicioServicio extends Struct.CollectionTypeSchema {
+  collectionName: 'servicios';
+  info: {
+    displayName: 'Servicio';
+    pluralName: 'servicios';
+    singularName: 'servicio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Cupos_Disponibles: Schema.Attribute.Integer & Schema.Attribute.Required;
+    Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
+    Duracion: Schema.Attribute.String & Schema.Attribute.Required;
+    Estado: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    Fecha_Hora: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    Imagen: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::servicio.servicio'
+    > &
+      Schema.Attribute.Private;
+    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTestimonioTestimonio extends Struct.CollectionTypeSchema {
+  collectionName: 'testimonios';
+  info: {
+    displayName: 'Testimonio';
+    pluralName: 'testimonios';
+    singularName: 'testimonio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Calificacion: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 0;
+        },
+        number
+      >;
+    Comentario: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    FechaTestimonio: Schema.Attribute.Date & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonio.testimonio'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Usuario: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -940,6 +1331,17 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::conversacion.conversacion': ApiConversacionConversacion;
+      'api::descuento.descuento': ApiDescuentoDescuento;
+      'api::detalle-pedido.detalle-pedido': ApiDetallePedidoDetallePedido;
+      'api::home-config.home-config': ApiHomeConfigHomeConfig;
+      'api::mensaje.mensaje': ApiMensajeMensaje;
+      'api::pedido.pedido': ApiPedidoPedido;
+      'api::producto.producto': ApiProductoProducto;
+      'api::progreso.progreso': ApiProgresoProgreso;
+      'api::reserva.reserva': ApiReservaReserva;
+      'api::servicio.servicio': ApiServicioServicio;
+      'api::testimonio.testimonio': ApiTestimonioTestimonio;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

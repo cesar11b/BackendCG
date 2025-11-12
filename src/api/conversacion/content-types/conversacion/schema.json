@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conversacions",
+  "info": {
+    "singularName": "conversacion",
+    "pluralName": "conversacions",
+    "displayName": "Conversacion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Usuario": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "Estado": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Activo",
+        "Inactivo"
+      ]
+    },
+    "FechaInicio": {
+      "type": "datetime"
+    },
+    "FechaCierre": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

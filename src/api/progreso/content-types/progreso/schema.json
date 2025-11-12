@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "progresos",
+  "info": {
+    "singularName": "progreso",
+    "pluralName": "progresos",
+    "displayName": "Progreso"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Peso": {
+      "type": "decimal",
+      "required": true
+    },
+    "IMC": {
+      "type": "decimal",
+      "required": true
+    },
+    "Fecha_Registro": {
+      "type": "date",
+      "required": true
+    },
+    "Observaciones": {
+      "type": "text",
+      "required": true
+    },
+    "Usuario": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
