@@ -35,8 +35,10 @@
         "files"
       ]
     },
-    "categoriarelation": {
-      "type": "string"
+    "categoria": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::categoria.categoria"
     },
     "Estado": {
       "type": "boolean",
