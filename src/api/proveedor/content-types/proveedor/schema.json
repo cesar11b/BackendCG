@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proveedors",
+  "info": {
+    "singularName": "proveedor",
+    "pluralName": "proveedors",
+    "displayName": "Proveedor"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string",
+      "required": true
+    },
+    "NumTelefono": {
+      "type": "integer",
+      "required": false,
+      "unique": true
+    },
+    "Email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "EstadoProveedor": {
+      "type": "boolean",
+      "required": true
+    },
+    "Direccion": {
+      "type": "text",
+      "required": false
+    }
+  }
+}
