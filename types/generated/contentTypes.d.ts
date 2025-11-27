@@ -430,6 +430,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
+  collectionName: 'blogs';
+  info: {
+    displayName: 'Blog';
+    pluralName: 'blogs';
+    singularName: 'blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Fecha: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    Info1: Schema.Attribute.Text & Schema.Attribute.Required;
+    Info2: Schema.Attribute.Text & Schema.Attribute.Required;
+    Info3: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Titular: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoriaCategoria extends Struct.CollectionTypeSchema {
   collectionName: 'categorias';
   info: {
@@ -596,6 +625,38 @@ export interface ApiHomeConfigHomeConfig extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiInfoConfigInfoConfig extends Struct.SingleTypeSchema {
+  collectionName: 'info_configs';
+  info: {
+    displayName: 'InfoConfig';
+    pluralName: 'info-configs';
+    singularName: 'info-config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Imagen: Schema.Attribute.Media<'images' | 'files' | 'videos', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-config.info-config'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Texto1: Schema.Attribute.Text & Schema.Attribute.Required;
+    Texto2: Schema.Attribute.Text;
+    Texto3: Schema.Attribute.Text;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMensajeMensaje extends Struct.CollectionTypeSchema {
   collectionName: 'mensajes';
   info: {
@@ -738,6 +799,40 @@ export interface ApiProgresoProgreso extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+  };
+}
+
+export interface ApiProveedorProveedor extends Struct.CollectionTypeSchema {
+  collectionName: 'proveedors';
+  info: {
+    displayName: 'Proveedor';
+    pluralName: 'proveedors';
+    singularName: 'proveedor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Direccion: Schema.Attribute.Text;
+    Email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    EstadoProveedor: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::proveedor.proveedor'
+    > &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    NumTelefono: Schema.Attribute.Integer & Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1364,15 +1459,18 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::blog.blog': ApiBlogBlog;
       'api::categoria.categoria': ApiCategoriaCategoria;
       'api::conversacion.conversacion': ApiConversacionConversacion;
       'api::descuento.descuento': ApiDescuentoDescuento;
       'api::detalle-pedido.detalle-pedido': ApiDetallePedidoDetallePedido;
       'api::home-config.home-config': ApiHomeConfigHomeConfig;
+      'api::info-config.info-config': ApiInfoConfigInfoConfig;
       'api::mensaje.mensaje': ApiMensajeMensaje;
       'api::pedido.pedido': ApiPedidoPedido;
       'api::producto.producto': ApiProductoProducto;
       'api::progreso.progreso': ApiProgresoProgreso;
+      'api::proveedor.proveedor': ApiProveedorProveedor;
       'api::reserva.reserva': ApiReservaReserva;
       'api::servicio.servicio': ApiServicioServicio;
       'api::testimonio.testimonio': ApiTestimonioTestimonio;
