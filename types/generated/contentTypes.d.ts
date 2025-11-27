@@ -862,6 +862,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Observaciones: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
+    servicio: Schema.Attribute.Relation<'oneToOne', 'api::servicio.servicio'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
