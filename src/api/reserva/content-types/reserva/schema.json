@@ -11,10 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Fecha": {
-      "type": "datetime",
-      "required": true
-    },
     "Estado": {
       "type": "enumeration",
       "required": true,
